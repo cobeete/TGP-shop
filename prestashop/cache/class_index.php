@@ -1366,7 +1366,7 @@
   ),
   'ContactController' => 
   array (
-    'path' => '',
+    'path' => 'override/controllers/front/ContactController.php',
     'type' => 'class',
   ),
   'ContactControllerCore' => 
