@@ -171,8 +171,6 @@ class PDFGeneratorCore extends TCPDF
 			$output = 'D';
 		elseif ($display == 'S')
 			$output = 'S';
-		elseif ($display == 'F')
-			$output = 'F';
 		else 	
 			$output = 'I';
 			

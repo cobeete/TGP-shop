@@ -140,11 +140,6 @@ abstract class ObjectModelCore
 	protected static $db = false;
 
 	/**
-	 * @var boolean, enable possibility to define an id before adding object
-	 */
-	public $force_id = false;
-
-	/**
 	 * Returns object validation rules (fields validity)
 	 *
 	 * @param string $class Child class name for static use (optional)
@@ -219,7 +214,7 @@ abstract class ObjectModelCore
 					if (!$id_lang && isset($this->def['multilang']) && $this->def['multilang'])
 					{
 						$sql = 'SELECT * FROM `'.pSQL(_DB_PREFIX_.$this->def['table']).'_lang`
-								WHERE `'.bqSQL($this->def['primary']).'` = '.(int)$id
+								WHERE `'.$this->def['primary'].'` = '.(int)$id
 								.(($this->id_shop && $this->isLangMultishop()) ? ' AND `id_shop` = '.$this->id_shop : '');
 						if ($object_datas_lang = ObjectModel::$db->executeS($sql))
 							foreach ($object_datas_lang as $row)
@@ -360,9 +355,8 @@ abstract class ObjectModelCore
 					$value = '';
 			}
 
-			$purify = (isset($data['validate']) && Tools::strtolower($data['validate']) == 'iscleanhtml') ? true : false;
 			// Format field value
-			$fields[$field] = ObjectModel::formatValue($value, $data['type'], false, $purify);
+			$fields[$field] = ObjectModel::formatValue($value, $data['type']);
 		}
 
 		return $fields;
@@ -374,20 +368,20 @@ abstract class ObjectModelCore
 	 * @param mixed $value
 	 * @param int $type
 	 */
-	public static function formatValue($value, $type, $with_quotes = false, $purify = true)
+	public static function formatValue($value, $type, $with_quotes = false)
 	{
 		switch ($type)
 		{
-			case self::TYPE_INT:
+			case self::TYPE_INT :
 				return (int)$value;
 
-			case self::TYPE_BOOL:
+			case self::TYPE_BOOL :
 				return (int)$value;
 
-			case self::TYPE_FLOAT:
+			case self::TYPE_FLOAT :
 				return (float)str_replace(',', '.', $value);
 
-			case self::TYPE_DATE:
+			case self::TYPE_DATE :
 				if (!$value)
 					return '0000-00-00';
 
@@ -395,17 +389,15 @@ abstract class ObjectModelCore
 					return '\''.pSQL($value).'\'';
 				return pSQL($value);
 
-			case self::TYPE_HTML:
-				if ($purify)
-					$value = Tools::purifyHTML($value);
+			case self::TYPE_HTML :
 				if ($with_quotes)
 					return '\''.pSQL($value, true).'\'';
 				return pSQL($value, true);
 
-			case self::TYPE_NOTHING:
+			case self::TYPE_NOTHING :
 				return $value;
 
-			case self::TYPE_STRING:
+			case self::TYPE_STRING :
 			default :
 				if ($with_quotes)
 					return '\''.pSQL($value).'\'';
@@ -437,9 +429,6 @@ abstract class ObjectModelCore
 		if (!ObjectModel::$db)
 			ObjectModel::$db = Db::getInstance();
 
-		if (isset($this->id) && !$this->force_id)
-			unset($this->id);
-
 		// @hook actionObject*AddBefore
 		Hook::exec('actionObjectAddBefore', array('object' => $this));
 		Hook::exec('actionObject'.get_class($this).'AddBefore', array('object' => $this));
@@ -459,6 +448,8 @@ abstract class ObjectModelCore
 		}
 		
 		// Database insertion
+		if (isset($this->id) && !Tools::getValue('forceIDs'))
+			unset($this->id);
 		if (Shop::checkIdShopDefault($this->def['table']))
 			$this->id_shop_default = min($id_shop_list);
 		if (!$result = ObjectModel::$db->insert($this->def['table'], $this->getFields(), $null_values))
@@ -1438,9 +1429,9 @@ abstract class ObjectModelCore
 	public static function existsInDatabase($id_entity, $table)
 	{
 		$row = Db::getInstance()->getRow('
-			SELECT `id_'.bqSQL($table).'` as id
-			FROM `'._DB_PREFIX_.bqSQL($table).'` e
-			WHERE e.`id_'.bqSQL($table).'` = '.(int)$id_entity
+			SELECT `id_'.$table.'` as id
+			FROM `'._DB_PREFIX_.$table.'` e
+			WHERE e.`id_'.$table.'` = '.(int)$id_entity
 		);
 
 		return isset($row['id']);
@@ -1459,7 +1450,7 @@ abstract class ObjectModelCore
 			$table = self::$definition['table'];
 
 		$query = new DbQuery();
-		$query->select('`id_'.bqSQL($table).'`');
+		$query->select('`id_'.pSQL($table).'`');
 		$query->from($table);
 		if ($has_active_column)
 			$query->where('`active` = 1');

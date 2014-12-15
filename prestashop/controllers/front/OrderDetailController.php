@@ -27,7 +27,7 @@
 class OrderDetailControllerCore extends FrontController
 {
 	public $php_self = 'order-detail';
-
+	
 	public $auth = true;
 	public $authRedirection = 'history';
 	public $ssl = true;
@@ -195,9 +195,8 @@ class OrderDetailControllerCore extends FrontController
 					'use_tax' => Configuration::get('PS_TAX'),
 					'group_use_tax' => (Group::getPriceDisplayMethod($customer->id_default_group) == PS_TAX_INC),
 					/* DEPRECATED: customizedDatas @since 1.5 */
-					'customizedDatas' => $customizedDatas,
+					'customizedDatas' => $customizedDatas
 					/* DEPRECATED: customizedDatas @since 1.5 */
-					'reorderingAllowed' => !(int)(Configuration::get('PS_DISALLOW_HISTORY_REORDERING'))
 				));
 
 				if ($carrier->url && $order->shipping_number)
@@ -225,3 +224,4 @@ class OrderDetailControllerCore extends FrontController
 		}
 	}
 }
+

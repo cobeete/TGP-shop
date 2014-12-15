@@ -41,7 +41,6 @@ class MediaCore
 		'ui.dialog' => array('fileName' => 'jquery.ui.dialog.min.js', 'dependencies' => array('ui.core', 'ui.widget', 'ui.position','ui.button'), 'theme' => true),
 		'ui.menu' => array('fileName' => 'jquery.ui.menu.min.js', 'dependencies' => array('ui.core', 'ui.widget', 'ui.position'), 'theme' => true),
 		'ui.slider' => array('fileName' => 'jquery.ui.slider.min.js', 'dependencies' => array('ui.core', 'ui.widget', 'ui.mouse'), 'theme' => true),
-		'ui.spinner' => array('fileName' => 'jquery.ui.spinner.min.js', 'dependencies' => array('ui.core', 'ui.widget', 'ui.button'), 'theme' => true),
 		'ui.tabs' => array('fileName' => 'jquery.ui.tabs.min.js', 'dependencies' => array('ui.core', 'ui.widget'), 'theme' => true),
 		'ui.datepicker' => array('fileName' => 'jquery.ui.datepicker.min.js', 'dependencies' => array('ui.core'), 'theme' => true),
 		'ui.progressbar' => array('fileName' => 'jquery.ui.progressbar.min.js', 'dependencies' => array('ui.core', 'ui.widget'), 'theme' => true),
@@ -82,6 +81,7 @@ class MediaCore
 	{
 		if (strlen($html_content) > 0)
 		{
+
 			//set an alphabetical order for args
 			// $html_content = preg_replace_callback(
 				// '/(<[a-zA-Z0-9]+)((\s*[a-zA-Z0-9]+=[\"\\\'][^\"\\\']*[\"\\\']\s*)*)>/',
@@ -149,6 +149,7 @@ class MediaCore
 		return $output;
 	}
 
+
 	public static function packJS($js_content)
 	{
 		if (!empty($js_content))
@@ -159,10 +160,10 @@ class MediaCore
 			} catch (Exception $e) {
 				if (_PS_MODE_DEV_)
 					echo $e->getMessage();
-				return ';'.trim($js_content, ';').';';
+				return $js_content;
 			}
 		}
-		return ';'.trim($js_content, ';').';';
+		return $js_content;
 	}
 
 	public static function minifyCSS($css_content, $fileuri = false, &$import_url = array())
@@ -174,7 +175,7 @@ class MediaCore
 		{
 			$limit  = Media::getBackTrackLimit();
 			$css_content = preg_replace('#/\*.*?\*/#s', '', $css_content, $limit);
-			$css_content = preg_replace_callback('#(url\((?![\\\'"]?data:)(?!http://)(?!https://)(?:\'|")?)([^\)\'"]*(?:\'|")?\))#s', array('Tools', 'replaceByAbsoluteURL'), $css_content, $limit); 
+			$css_content = preg_replace_callback('#(url\((?!data:)(?!http://)(?!https://)(?:\'|")?)([^\)\'"]*(?:\'|")?\))#s', array('Tools', 'replaceByAbsoluteURL'), $css_content, $limit); 
 			$css_content = preg_replace('#\s+#', ' ', $css_content, $limit);		
 			$css_content = str_replace(array("\t", "\n", "\r"), '', $css_content);
 			$css_content = str_replace(array('; ', ': '), array(';', ':'), $css_content);
@@ -472,10 +473,6 @@ class MediaCore
 			}
 
 			$infos['path'] = _PS_ROOT_DIR_.Tools::str_replace_once(__PS_BASE_URI__, '/', $url_data['path']);
-
-			if (!@filemtime($infos['path']))
-				$infos['path'] = _PS_CORE_DIR_.Tools::str_replace_once(__PS_BASE_URI__, '/', $url_data['path']);
-
 			$css_files_by_media[$media]['files'][] = $infos;
 			if (!array_key_exists('date', $css_files_by_media[$media]))
 				$css_files_by_media[$media]['date'] = 0;
@@ -588,7 +585,9 @@ class MediaCore
 		// get js files infos
 		foreach ($js_files as $filename)
 		{
-			if (Validate::isAbsoluteUrl($filename))
+			$expr = explode(':', $filename);
+
+			if ($expr[0] == 'http')
 				$js_external_files[] = $filename;
 			else
 			{
@@ -596,10 +595,6 @@ class MediaCore
 				$infos['uri'] = $filename;
 				$url_data = parse_url($filename);
 				$infos['path'] = _PS_ROOT_DIR_.Tools::str_replace_once(__PS_BASE_URI__, '/', $url_data['path']);
-
-				if (!@filemtime($info['path']))
-					$infos['path'] = _PS_CORE_DIR_.Tools::str_replace_once(__PS_BASE_URI__, '/', $url_data['path']);
-
 				$js_files_infos[] = $infos;
 
 				$js_files_date = max(
@@ -648,11 +643,7 @@ class MediaCore
 		}
 
 		// rebuild the original js_files array
-		if (strpos($compressed_js_path, _PS_ROOT_DIR_) !== false)
-			$url = str_replace(_PS_ROOT_DIR_.'/', __PS_BASE_URI__, $compressed_js_path);
-
-		if (strpos($compressed_js_path, _PS_CORE_DIR_) !== false)
-			$url = str_replace(_PS_CORE_DIR_.'/', __PS_BASE_URI__, $compressed_js_path);
+		$url = str_replace(_PS_ROOT_DIR_.'/', __PS_BASE_URI__, $compressed_js_path);
 
 		return array_merge(array($protocol_link.Tools::getMediaServer($url).$url), $js_external_files);
 	}
@@ -722,7 +713,7 @@ class MediaCore
 			foreach ($scripts as $script)
 				if ($src = $script->getAttribute('src'))
 				{
-			  		if (substr($src, 0, 2) == '//')
+			  		if (preg_match('#^//#', $src))
 						$src = Tools::getCurrentUrlProtocolPrefix().substr($src, 2);
 
 					$patterns = array(
@@ -745,8 +736,7 @@ class MediaCore
 								$version = $matches[1];
 							if ($version)
 							{
-								if ($version != _PS_JQUERY_VERSION_)
-									Context::getContext()->controller->addJquery($version, null, $minifier);
+								Context::getContext()->controller->addJquery($version, null, $minifier);
 								array_push(Media::$inline_script_src, $src);
 							}
 						}
@@ -776,17 +766,10 @@ class MediaCore
 			return '';
 
 		/* This is an external script, if it already belongs to js_files then remove it from content */
+
 		preg_match('/src\s*=\s*["\']?([^"\']*)[^>]/ims', $original, $results);
-		if (array_key_exists(1, $results))
-		{
-			if (substr($results[1], 0, 2) == '//')
-			{
-				$protocol_link = Tools::getCurrentUrlProtocolPrefix();
-				$results[1] = $protocol_link.ltrim($results[1], '/');
-			}
-			if (in_array($results[1], Context::getContext()->controller->js_files) || in_array($results[1], Media::$inline_script_src))
-				return '';
-		}
+		if (isset($results[1]) && (in_array($results[1], Context::getContext()->controller->js_files) || in_array($results[1], Media::$inline_script_src)))
+			return '';
 
 		/* return original string because no match was found */
 		return $original;

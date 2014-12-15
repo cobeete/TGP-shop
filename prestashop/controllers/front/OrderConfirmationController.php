@@ -70,7 +70,7 @@ class OrderConfirmationControllerCore extends FrontController
 		if (!Validate::isLoadedObject($order) || $order->id_customer != $this->context->customer->id || $this->secure_key != $order->secure_key)
 			Tools::redirect($redirectLink);
 		$module = Module::getInstanceById((int)($this->id_module));
-		if ($order->module != $module->name)
+		if ($order->payment != $module->displayName)
 			Tools::redirect($redirectLink);
 	}
 

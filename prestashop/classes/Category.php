@@ -127,8 +127,8 @@ class CategoryCore extends ObjectModel
 			'nb_products_recursive' => array('getter' => 'getWsNbProductsRecursive', 'setter' => false),
 		),
 		'associations' => array(
-			'categories' => array('getter' => 'getChildrenWs', 'resource' => 'categories', ),
-			'products' => array('getter' => 'getProductsWs', 'resource' => 'products', ),
+			'categories' => array('getter' => 'getChildrenWs', 'resource' => 'category', ),
+			'products' => array('getter' => 'getProductsWs', 'resource' => 'product', ),
 		),
 	);
 
@@ -139,9 +139,14 @@ class CategoryCore extends ObjectModel
 		$this->image_dir = _PS_CAT_IMG_DIR_;
 	}
 
+	/**
+	  * Allows to display the category description without HTML tags and slashes
+	  *
+	  * @return string
+	  */
 	public static function getDescriptionClean($description)
 	{
-		return Tools::getDescriptionClean($description);
+		return strip_tags(stripslashes($description));
 	}
 
 	public function add($autodate = true, $null_values = false)
@@ -512,7 +517,7 @@ class CategoryCore extends ObjectModel
 			$buff = array();
 
 			if (!isset($root_category))
-				$root_category = Category::getRootCategory()->id;
+				$root_category = 1;
 
 			foreach ($result as $row)
 			{

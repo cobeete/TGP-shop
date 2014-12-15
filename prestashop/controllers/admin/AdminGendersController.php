@@ -63,11 +63,11 @@ class AdminGendersControllerCore extends AdminController
 				'class' => 'fixed-width-xs'
 			),
 			'name' => array(
-				'title' => $this->l('Social title'),
+				'title' => $this->l('Name'),
 				'filter_key' => 'b!name'
 			),
 			'type' => array(
-				'title' => $this->l('Gender'),
+				'title' => $this->l('Type'),
 				'orderby' => false,
 				'type' => 'select',
 				'list' => array(
@@ -107,13 +107,13 @@ class AdminGendersControllerCore extends AdminController
 	{
 		$this->fields_form = array(
 			'legend' => array(
-				'title' => $this->l('Social titles'),
+				'title' => $this->l('Titles'),
 				'icon' => 'icon-male'
 			),
 			'input' => array(
 				array(
 					'type' => 'text',
-					'label' => $this->l('Social title'),
+					'label' => $this->l('Name'),
 					'name' => 'name',
 					'lang' => true,
 					'col' => 4,
@@ -122,7 +122,7 @@ class AdminGendersControllerCore extends AdminController
 				),
 				array(
 					'type' => 'radio',
-					'label' => $this->l('Gender'),
+					'label' => $this->l('Type'),
 					'name' => 'type',
 					'required' => false,
 					'class' => 't',
@@ -153,14 +153,14 @@ class AdminGendersControllerCore extends AdminController
 				),
 				array(
 					'type' => 'text',
-					'label' => $this->l('Image width'),
+					'label' => $this->l('Image Width'),
 					'name' => 'img_width',
 					'col' => 2,
 					'hint' => $this->l('Image width in pixels. Enter "0" to use the original size.')
 				),
 				array(
 					'type' => 'text',
-					'label' => $this->l('Image height'),
+					'label' => $this->l('Image Height'),
 					'name' => 'img_height',
 					'col' => 2,
 					'hint' => $this->l('Image height in pixels. Enter "0" to use the original size.')

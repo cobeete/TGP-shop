@@ -59,6 +59,7 @@ class CompareControllerCore extends FrontController
 			}
 			else
 				die('0');
+
 			die('1');
 		}
 		die('0');

@@ -64,13 +64,6 @@ class HelperOptionsCore extends Helper
 				$category_data['fields'] = array();
 
 			$category_data['hide_multishop_checkbox'] = true;
-
-			if (isset($category_data['tabs']))
-			{
-				$tabs[$category] = $category_data['tabs'];
-				$tabs[$category]['misc'] = $this->l('Miscellaneous');
-			}
-
 			foreach ($category_data['fields'] as $key => $field)
 			{
 				if (empty($field['no_multishop_checkbox']) && !$hide_multishop_checkbox)
@@ -98,10 +91,10 @@ class HelperOptionsCore extends Helper
 				$field['required'] = isset($field['required']) ? $field['required'] : $this->required;
 
 				if ($field['type'] == 'color')
-					$this->context->controller->addJqueryPlugin('colorpicker');
+					$this->context->controller->addJS(_PS_JS_DIR_.'jquery/plugins/jquery.colorpicker.js');
 
 				if ($field['type'] == 'texarea' || $field['type'] == 'textareaLang')
-					$this->context->controller->addJqueryPlugin('autosize');
+					$this->context->controller->addJS(_PS_JS_DIR_.'jquery/plugins/jquery.autosize.min.js');
 
 				if ($field['type'] == 'file')
 				{
@@ -210,7 +203,6 @@ class HelperOptionsCore extends Helper
 			'current' => $this->currentIndex,
 			'table' => $this->table,
 			'token' => $this->token,
-			'tabs' => (isset($tabs)) ? $tabs : null,
 			'option_list' => $option_list,
 			'current_id_lang' => $this->context->language->id,
 			'languages' => isset($languages) ? $languages : null,

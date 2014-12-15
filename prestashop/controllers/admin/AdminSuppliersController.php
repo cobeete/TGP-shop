@@ -38,8 +38,8 @@ class AdminSuppliersControllerCore extends AdminController
 		$this->addRowAction('delete');
 		$this->allow_export = true;
 
-		$this->_defaultOrderBy = 'name';
-		$this->_defaultOrderWay = 'ASC';
+		$this->_orderBy = 'name';
+		$this->_orderWay = 'ASC';
 		
 		$this->bulk_actions = array(
 			'delete' => array(
@@ -64,7 +64,6 @@ class AdminSuppliersControllerCore extends AdminController
 		);
 
 		parent::__construct();
-
 	}
 
 	public function setMedia()
@@ -120,19 +119,6 @@ class AdminSuppliersControllerCore extends AdminController
 					'required' => true,
 					'col' => 4,
 					'hint' => $this->l('Invalid characters:').' &lt;&gt;;=#{}',
-				),
-				(in_array('company', $required_fields) ? 
-					array(
-						'type' => 'text',
-						'label' => $this->l('Company'),
-						'name' => 'company',
-						'display' => in_array('company', $required_fields),
-						'required' => in_array('company', $required_fields),
-						'maxlength' => 16,
-						'col' => 4,
-						'hint' => $this->l('Company name for this supplier')
-					) 
-					: null
 				),
 				array(
 					'type' => 'textarea',

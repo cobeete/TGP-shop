@@ -104,22 +104,6 @@ class ConfigurationCore extends ObjectModel
 		return (int)Db::getInstance()->getValue($sql);
 	}
 
-	public static function configurationIsLoaded()
-	{
-		static $loaded = null;
-
-		if ($loaded !== null)
-			return $loaded;
-
-		if (isset(self::$_cache) && isset(self::$_cache['configuration']) && count(self::$_cache['configuration']))
-		{
-			$loaded = true;
-			return $loaded;
-		}
-
-		return false;
-	}
-
 	/**
 	 * Load all configuration data
 	 */

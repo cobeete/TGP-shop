@@ -50,7 +50,7 @@ class AdminStockConfigurationControllerCore extends AdminController
 				'class' => 'fixed-width-xs'
 			),
 			'sign' => array(
-				'title' => $this->l('Action'),
+				'title' => $this->l('Sign'),
 				'align' => 'center',
 				'type' => 'select',
 				'filter_key' => 'a!sign',
@@ -185,7 +185,7 @@ class AdminStockConfigurationControllerCore extends AdminController
 							'id' => 'id',
 							'name' => 'name'
 						),
-						'desc' => $this->l('Does this label indicate a stock increase or a stock decrease?')
+						'hint' => $this->l('Select the corresponding action: Increase or decrease stock?')
 					),
 				),
 				'submit' => array(
@@ -276,11 +276,11 @@ class AdminStockConfigurationControllerCore extends AdminController
 									'label' => $this->l('No')
 								)
 							),
-							'hint' => $this->l('Indicates whether the supplies have been either partially or completely received. This will allow you to know if ordered products have to be added to the corresponding warehouse.'),
+							'hint' => $this->l('Define if products have been either partially or completely received. This will allow you to know if ordered products have to be added to the corresponding warehouse.'),
 						),
 						array(
 							'type' => 'switch',
-							'label' => $this->l('Awaiting delivery'),
+							'label' => $this->l('Pending receipt'),
 							'name' => 'pending_receipt',
 							'required' => true,
 							'is_bool' => true,
@@ -296,7 +296,7 @@ class AdminStockConfigurationControllerCore extends AdminController
 									'label' => $this->l('No')
 								)
 							),
-							'hint' => $this->l('Indicates that you are awaiting delivery of supplies.')
+							'hint' => $this->l('The customer is awaiting delivery.')
 						),
 					),
 					'submit' => array(
@@ -394,7 +394,7 @@ class AdminStockConfigurationControllerCore extends AdminController
 		 * Supply Order Status/State
 		 */
 		$second_list = null;
-		unset($this->_select, $this->_where, $this->_join, $this->_group, $this->_filterHaving, $this->_filter, $this->list_skip_actions['delete'], $this->list_skip_actions['edit'], $this->list_id);
+		unset($this->_select, $this->_where, $this->_join, $this->_group, $this->_filterHaving, $this->_filter, $this->list_skip_actions['delete'], $this->list_skip_actions['edit']);
 
 		// generates the actual second list
 		$second_list = $this->initSupplyOrderStatusList();
@@ -534,7 +534,7 @@ class AdminStockConfigurationControllerCore extends AdminController
 	{
 		if (!Configuration::get('PS_ADVANCED_STOCK_MANAGEMENT'))
 		{
-			$this->warnings[md5('PS_ADVANCED_STOCK_MANAGEMENT')] = $this->l('You need to activate the Advanced Stock Management feature before you can use this feature.');
+			$this->warnings[md5('PS_ADVANCED_STOCK_MANAGEMENT')] = $this->l('You need to activate advanced stock management before using this feature.');
 			return false;
 		}
 		parent::initContent();
@@ -544,7 +544,7 @@ class AdminStockConfigurationControllerCore extends AdminController
 	{
 		if (!Configuration::get('PS_ADVANCED_STOCK_MANAGEMENT'))
 		{
-			$this->warnings[md5('PS_ADVANCED_STOCK_MANAGEMENT')] = $this->l('You need to activate the Advanced Stock Management feature before you can use this feature.');
+			$this->warnings[md5('PS_ADVANCED_STOCK_MANAGEMENT')] = $this->l('You need to activate advanced stock management before using this feature.');
 			return false;
 		}
 		parent::initProcess();	

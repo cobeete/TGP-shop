@@ -144,14 +144,6 @@ class AdminQuickAccessesControllerCore extends AdminController
 
 		parent::initProcess();
 	}
-	
-	public function processAdd()
-	{
-		// Enable the creation of quick links from the URL
-		$_POST = array_merge($_POST, $_GET);
-
-		return parent::processAdd();
-	}
 
 	public function processNewWindow()
 	{

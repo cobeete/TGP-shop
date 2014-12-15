@@ -156,12 +156,6 @@ class AdminWarehousesControllerCore extends AdminController
 		else
 			$this->toolbar_title = $this->l('Stock: Warehouse management');
 
-		$tmp_addr = new Address();
-		$res = $tmp_addr->getFieldsRequiredDatabase();
-		$required_fields = array();
-		foreach ($res as $row)
-			$required_fields[(int)$row['id_required_field']] = $row['field_name'];
-
 		// sets the fields of the form
 		$this->fields_form = array(
 			'legend' => array(
@@ -197,16 +191,7 @@ class AdminWarehousesControllerCore extends AdminController
 					'label' => $this->l('Phone'),
 					'name' => 'phone',
 					'maxlength' => 16,
-					'hint' => $this->l('Phone number for this warehouse.'),
-					'required' => in_array('phone', $required_fields)
-				),
-				array(
-					'type' => 'text',
-					'label' => $this->l('Mobile phone'),
-					'name' => 'phone_mobile',
-					'required' => in_array('phone_mobile', $required_fields),
-					'maxlength' => 16,
-					'hint' => $this->l('Mobile phone number for this supplier.')
+					'hint' => $this->l('Phone number for this warehouse.')
 				),
 				array(
 					'type' => 'text',
@@ -221,14 +206,13 @@ class AdminWarehousesControllerCore extends AdminController
 					'name' => 'address2',
 					'maxlength' => 128,
 					'hint' => $this->l('Complementary address (optional).'),
-					'required' => in_array('address2', $required_fields)
 				),
 				array(
 					'type' => 'text',
 					'label' => $this->l('Zip/postal code'),
 					'name' => 'postcode',
 					'maxlength' => 12,
-					'required' => in_array('postcode', $required_fields)
+					'required' => true,
 				),
 				array(
 					'type' => 'text',
@@ -284,11 +268,10 @@ class AdminWarehousesControllerCore extends AdminController
 						'name' => 'name'
 					),
 					'hint' => array(
-						$this->l('Associated carriers.'),
-						$this->l('If you do not select any carrier, none will be able to ship from this warehouse.'),
+						$this->l('Associated carriers. Use CTRL+Click to select more than one carrier.'),
+						$this->l('You must select at least one carrier. If you do not select any carrier, none will be able to ship from this warehouse.'),
 						$this->l('You can specify the number of carriers available to ship orders from particular warehouses.'),
-					),
-					'desc' => $this->l('You must select at least one carrier to enable shipping from this warehouse. Use CTRL+Click to select more than one carrier.'),
+					)
 				),
 			),
 
@@ -319,7 +302,7 @@ class AdminWarehousesControllerCore extends AdminController
 					'query' => array(
 						array(
 							'id' => 'WA',
-							'name' => $this->l('Weighted Average')
+							'name' => $this->l('Average Weight')
 						),
 						array(
 							'id' => 'FIFO',
@@ -484,15 +467,15 @@ class AdminWarehousesControllerCore extends AdminController
 			switch ($item['management_type']) // management type can be either WA/FIFO/LIFO
 			{
 				case 'WA':
-					$item['management_type'] = $this->l('WA: Weighted Average');
+					$item['management_type'] = $this->l('WA');
 				break;
 
 				case 'FIFO':
-					$item['management_type'] = $this->l('FIFO: First In, First Out');
+					$item['management_type'] = $this->l('FIFO');
 				break;
 
 				case 'LIFO':
-					$item['management_type'] = $this->l('LIFO: Last In, First Out');
+					$item['management_type'] = $this->l('LIFO');
 				break;
 			}
 		}
@@ -555,13 +538,6 @@ class AdminWarehousesControllerCore extends AdminController
 		$address->id_country = Tools::getValue('id_country', null);
 		$address->id_state = Tools::getValue('id_state', null);
 		$address->city = Tools::getValue('city', null);
-
-		if (!($country = new Country($address->id_country, Configuration::get('PS_LANG_DEFAULT'))) || !Validate::isLoadedObject($country))
-			$this->errors[] = Tools::displayError('Country is invalid');
-		$contains_state = isset($country) && is_object($country) ? (int)$country->contains_states: 0;
-		$id_state = isset($address) && is_object($address) ? (int)$address->id_state: 0;
-		if ($contains_state && !$id_state)
-			$this->errors[] = Tools::displayError('This country requires you to choose a State.');
 
 		// validates the address
 		$validation = $address->validateController();
@@ -637,4 +613,5 @@ class AdminWarehousesControllerCore extends AdminController
 			return;
 		$obj->resetStockAvailable();
 	}
+
 }
