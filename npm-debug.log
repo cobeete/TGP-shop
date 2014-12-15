@@ -1,0 +1,153 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'generator-prestashop-module' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose cache add [ 'generator-prestashop-module', null ]
+5 verbose cache add name=undefined spec="generator-prestashop-module" args=["generator-prestashop-module",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'generator-prestashop-module',
+6 verbose parsed url   path: 'generator-prestashop-module',
+6 verbose parsed url   href: 'generator-prestashop-module' }
+7 silly lockFile 656ad19a-generator-prestashop-module generator-prestashop-module
+8 verbose lock generator-prestashop-module /Users/manuelbordallodavila/.npm/656ad19a-generator-prestashop-module.lock
+9 silly lockFile 656ad19a-generator-prestashop-module generator-prestashop-module
+10 silly lockFile 656ad19a-generator-prestashop-module generator-prestashop-module
+11 verbose addNamed [ 'generator-prestashop-module', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile fe353532-generator-prestashop-module generator-prestashop-module@
+14 verbose lock generator-prestashop-module@ /Users/manuelbordallodavila/.npm/fe353532-generator-prestashop-module.lock
+15 silly addNameRange { name: 'generator-prestashop-module',
+15 silly addNameRange   range: '*',
+15 silly addNameRange   hasData: false }
+16 verbose request where is /generator-prestashop-module
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id bb57b538904e77c3
+19 verbose url raw /generator-prestashop-module
+20 verbose url resolving [ 'https://registry.npmjs.org/',
+20 verbose url resolving   './generator-prestashop-module' ]
+21 verbose url resolved https://registry.npmjs.org/generator-prestashop-module
+22 verbose request where is https://registry.npmjs.org/generator-prestashop-module
+23 info trying registry request attempt 1 at 22:34:39
+24 http GET https://registry.npmjs.org/generator-prestashop-module
+25 http 200 https://registry.npmjs.org/generator-prestashop-module
+26 silly registry.get cb [ 200,
+26 silly registry.get   { date: 'Mon, 15 Dec 2014 21:34:39 GMT',
+26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     etag: '"7DBSU1TDNOT3UIEW9CX9NPNXJ"',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=60',
+26 silly registry.get     'content-length': '3822',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     'x-served-by': 'cache-lcy1130-LCY',
+26 silly registry.get     'x-cache': 'MISS',
+26 silly registry.get     'x-cache-hits': '0',
+26 silly registry.get     'x-timer': 'S1418679278.868379,VS0,VE357',
+26 silly registry.get     vary: 'Accept',
+26 silly registry.get     'keep-alive': 'timeout=10, max=50',
+26 silly registry.get     connection: 'Keep-Alive' } ]
+27 silly addNameRange number 2 { name: 'generator-prestashop-module',
+27 silly addNameRange   range: '*',
+27 silly addNameRange   hasData: true }
+28 silly addNameRange versions [ 'generator-prestashop-module', [ '0.0.0' ] ]
+29 verbose addNamed [ 'generator-prestashop-module', '0.0.0' ]
+30 verbose addNamed [ '0.0.0', '0.0.0' ]
+31 silly lockFile 3ebb2660-enerator-prestashop-module-0-0-0 generator-prestashop-module@0.0.0
+32 verbose lock generator-prestashop-module@0.0.0 /Users/manuelbordallodavila/.npm/3ebb2660-enerator-prestashop-module-0-0-0.lock
+33 silly lockFile d7e075f8-ator-prestashop-module-0-0-0-tgz https://registry.npmjs.org/generator-prestashop-module/-/generator-prestashop-module-0.0.0.tgz
+34 verbose lock https://registry.npmjs.org/generator-prestashop-module/-/generator-prestashop-module-0.0.0.tgz /Users/manuelbordallodavila/.npm/d7e075f8-ator-prestashop-module-0-0-0-tgz.lock
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/generator-prestashop-module/-/generator-prestashop-module-0.0.0.tgz',
+35 verbose addRemoteTarball   'fe7458caec1e316607e4c3ac7e5491c2ef034adb' ]
+36 info retry fetch attempt 1 at 22:34:40
+37 verbose fetch to= /var/folders/wp/1q1lcqln6xs1tnvccrd8f_3w0000gn/T/npm-11916-U4Pk24z2/registry.npmjs.org/generator-prestashop-module/-/generator-prestashop-module-0.0.0.tgz
+38 http GET https://registry.npmjs.org/generator-prestashop-module/-/generator-prestashop-module-0.0.0.tgz
+39 http 200 https://registry.npmjs.org/generator-prestashop-module/-/generator-prestashop-module-0.0.0.tgz
+40 silly lockFile d7e075f8-ator-prestashop-module-0-0-0-tgz https://registry.npmjs.org/generator-prestashop-module/-/generator-prestashop-module-0.0.0.tgz
+41 silly lockFile d7e075f8-ator-prestashop-module-0-0-0-tgz https://registry.npmjs.org/generator-prestashop-module/-/generator-prestashop-module-0.0.0.tgz
+42 silly lockFile 3ebb2660-enerator-prestashop-module-0-0-0 generator-prestashop-module@0.0.0
+43 silly lockFile 3ebb2660-enerator-prestashop-module-0-0-0 generator-prestashop-module@0.0.0
+44 silly lockFile fe353532-generator-prestashop-module generator-prestashop-module@
+45 silly lockFile fe353532-generator-prestashop-module generator-prestashop-module@
+46 silly resolved [ { name: 'generator-prestashop-module',
+46 silly resolved     version: '0.0.0',
+46 silly resolved     description: 'Yeoman generator',
+46 silly resolved     license: 'MIT',
+46 silly resolved     main: 'app/index.js',
+46 silly resolved     repository:
+46 silly resolved      { type: 'git',
+46 silly resolved        url: 'git://github.com/thoma202/generator-prestashop-module' },
+46 silly resolved     author: { name: 'Thoma', url: 'https://github.com/thoma202' },
+46 silly resolved     engines: { node: '>=0.10.0' },
+46 silly resolved     scripts: { test: 'mocha' },
+46 silly resolved     files: [ 'app' ],
+46 silly resolved     keywords: [ 'yeoman-generator' ],
+46 silly resolved     dependencies:
+46 silly resolved      { 'yeoman-generator': '~0.16.0',
+46 silly resolved        chalk: '~0.4.0',
+46 silly resolved        yosay: '^0.1.0' },
+46 silly resolved     devDependencies: { mocha: '*' },
+46 silly resolved     peerDependencies: { yo: '>=1.0.0' },
+46 silly resolved     bugs: { url: 'https://github.com/thoma202/generator-prestashop-module/issues' },
+46 silly resolved     homepage: 'https://github.com/thoma202/generator-prestashop-module',
+46 silly resolved     _id: 'generator-prestashop-module@0.0.0',
+46 silly resolved     dist:
+46 silly resolved      { shasum: 'fe7458caec1e316607e4c3ac7e5491c2ef034adb',
+46 silly resolved        tarball: 'http://registry.npmjs.org/generator-prestashop-module/-/generator-prestashop-module-0.0.0.tgz' },
+46 silly resolved     _from: 'generator-prestashop-module@',
+46 silly resolved     _npmVersion: '1.3.13',
+46 silly resolved     _npmUser: { name: 'thoma_bigueres', email: 'tbigueres@202-ecommerce.com' },
+46 silly resolved     maintainers: [ [Object] ],
+46 silly resolved     directories: {},
+46 silly resolved     _shasum: 'fe7458caec1e316607e4c3ac7e5491c2ef034adb',
+46 silly resolved     _resolved: 'https://registry.npmjs.org/generator-prestashop-module/-/generator-prestashop-module-0.0.0.tgz' } ]
+47 info install generator-prestashop-module@0.0.0 into /usr/local/lib
+48 info installOne generator-prestashop-module@0.0.0
+49 verbose lib/node_modules/generator-prestashop-module unbuild
+50 verbose tar unpack /Users/manuelbordallodavila/.npm/generator-prestashop-module/0.0.0/package.tgz
+51 silly lockFile c69d86f6-ules-generator-prestashop-module tar:///usr/local/lib/node_modules/generator-prestashop-module
+52 verbose lock tar:///usr/local/lib/node_modules/generator-prestashop-module /Users/manuelbordallodavila/.npm/c69d86f6-ules-generator-prestashop-module.lock
+53 silly lockFile a8cde406-stashop-module-0-0-0-package-tgz tar:///Users/manuelbordallodavila/.npm/generator-prestashop-module/0.0.0/package.tgz
+54 verbose lock tar:///Users/manuelbordallodavila/.npm/generator-prestashop-module/0.0.0/package.tgz /Users/manuelbordallodavila/.npm/a8cde406-stashop-module-0-0-0-package-tgz.lock
+55 silly gunzTarPerm modes [ '755', '644' ]
+56 error Error: EACCES, mkdir '/usr/local/lib/node_modules/generator-prestashop-module'
+56 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/generator-prestashop-module']
+56 error   errno: 3,
+56 error   code: 'EACCES',
+56 error   path: '/usr/local/lib/node_modules/generator-prestashop-module',
+56 error   fstream_type: 'Directory',
+56 error   fstream_path: '/usr/local/lib/node_modules/generator-prestashop-module',
+56 error   fstream_class: 'DirWriter',
+56 error   fstream_stack:
+56 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+56 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+56 error      'Object.oncomplete (fs.js:107:15)' ] }
+57 error Please try running this command again as root/Administrator.
+58 error System Darwin 14.0.0
+59 error command "node" "/usr/local/bin/npm" "install" "-g" "generator-prestashop-module"
+60 error cwd /Users/manuelbordallodavila/git/TGP-shop
+61 error node -v v0.10.33
+62 error npm -v 1.4.28
+63 error path /usr/local/lib/node_modules/generator-prestashop-module
+64 error fstream_path /usr/local/lib/node_modules/generator-prestashop-module
+65 error fstream_type Directory
+66 error fstream_class DirWriter
+67 error code EACCES
+68 error errno 3
+69 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/generator-prestashop-module'
+70 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+70 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+70 error fstream_stack Object.oncomplete (fs.js:107:15)
+71 verbose exit [ 3, true ]
