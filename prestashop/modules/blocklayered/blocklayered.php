@@ -37,7 +37,7 @@ class BlockLayered extends Module
 	{
 		$this->name = 'blocklayered';
 		$this->tab = 'front_office_features';
-		$this->version = '1.11';
+		$this->version = '2.0.4';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->bootstrap = true;
@@ -137,8 +137,10 @@ class BlockLayered extends Module
 		Db::getInstance()->execute('DROP TABLE IF EXISTS '._DB_PREFIX_.'layered_friendly_url');
 		Db::getInstance()->execute('DROP TABLE IF EXISTS '._DB_PREFIX_.'layered_indexable_attribute_group');
 		Db::getInstance()->execute('DROP TABLE IF EXISTS '._DB_PREFIX_.'layered_indexable_feature');
+		Db::getInstance()->execute('DROP TABLE IF EXISTS '._DB_PREFIX_.'layered_indexable_attribute_lang_value');
 		Db::getInstance()->execute('DROP TABLE IF EXISTS '._DB_PREFIX_.'layered_indexable_attribute_group_lang_value');
 		Db::getInstance()->execute('DROP TABLE IF EXISTS '._DB_PREFIX_.'layered_indexable_feature_lang_value');
+		Db::getInstance()->execute('DROP TABLE IF EXISTS '._DB_PREFIX_.'layered_indexable_feature_value_lang_value');
 		Db::getInstance()->execute('DROP TABLE IF EXISTS '._DB_PREFIX_.'layered_category');
 		Db::getInstance()->execute('DROP TABLE IF EXISTS '._DB_PREFIX_.'layered_filter');
 		Db::getInstance()->execute('DROP TABLE IF EXISTS '._DB_PREFIX_.'layered_filter_shop');
@@ -1713,6 +1715,9 @@ class BlockLayered extends Module
 			{
 				foreach ($url_attributes as $url_attribute)
 				{
+					/* Pagination uses - as separator, can be different from $this->getAnchor()*/
+					if (strpos($url_attribute, 'page-') === 0)
+						$url_attribute = str_replace('-', $this->getAnchor(), $url_attribute);
 					$url_parameters = explode($this->getAnchor(), $url_attribute);
 					$attribute_name  = array_shift($url_parameters);
 					if ($attribute_name == 'page')
@@ -1995,14 +2000,14 @@ class BlockLayered extends Module
 			LEFT JOIN '._DB_PREFIX_.'category c ON (c.id_category = cp.id_category)
 			LEFT JOIN `'._DB_PREFIX_.'product` p ON p.`id_product` = cp.`id_product`
 			'.Shop::addSqlAssociation('product', 'p').'
-			'.Product::sqlStock('p', null, false, Context::getContext()->shop).'
+			LEFT JOIN `'._DB_PREFIX_.'product_attribute` pa ON (p.`id_product` = pa.`id_product`)
+			'.Shop::addSqlAssociation('product_attribute', 'pa', false, 'product_attribute_shop.`default_on` = 1').'
+			'.Product::sqlStock('p', 'product_attribute_shop', false, Context::getContext()->shop).'
 			LEFT JOIN '._DB_PREFIX_.'product_lang pl ON (pl.id_product = p.id_product'.Shop::addSqlRestrictionOnLang('pl').' AND pl.id_lang = '.(int)$cookie->id_lang.')
 			LEFT JOIN `'._DB_PREFIX_.'image` i  ON (i.`id_product` = p.`id_product`)'.
 			Shop::addSqlAssociation('image', 'i', false, 'image_shop.cover=1').'
 			LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (image_shop.`id_image` = il.`id_image` AND il.`id_lang` = '.(int)$cookie->id_lang.')
 			LEFT JOIN '._DB_PREFIX_.'manufacturer m ON (m.id_manufacturer = p.id_manufacturer)
-			LEFT JOIN '._DB_PREFIX_.'product_attribute pa ON (p.id_product = pa.id_product)'.
-			Shop::addSqlAssociation('product_attribute', 'pa', false, 'product_attribute_shop.`default_on` = 1').'
 			WHERE '.$alias_where.'.`active` = 1 AND '.$alias_where.'.`visibility` IN ("both", "catalog")
 			AND '.(Configuration::get('PS_LAYERED_FULL_TREE') ? 'c.nleft >= '.(int)$parent->nleft.' AND c.nright <= '.(int)$parent->nright : 'c.id_category = '.(int)$id_parent).'
 			AND c.active = 1
@@ -2859,7 +2864,8 @@ class BlockLayered extends Module
 			$smarty->assign($filter_block);
 			$smarty->assign(array(
 				'hide_0_values' => Configuration::get('PS_LAYERED_HIDE_0_VALUES'),
-				'blocklayeredSliderName' => $translate
+				'blocklayeredSliderName' => $translate,
+				'col_img_dir' => _PS_COL_IMG_DIR_
 			));
 			return $this->display(__FILE__, 'blocklayered.tpl');
 		}
@@ -3002,7 +3008,7 @@ class BlockLayered extends Module
 		global $smarty, $cookie;
 
 		$selected_filters = $this->getSelectedFilters();
-		$filter_block = $this->getFilterBlock($this->getSelectedFilters());
+		$filter_block = $this->getFilterBlock($selected_filters);
 		$this->getProducts($selected_filters, $products, $nb_products, $p, $n, $pages_nb, $start, $stop, $range);
 		
 		// Add pagination variable
@@ -3046,7 +3052,7 @@ class BlockLayered extends Module
 			array(
 				'homeSize' => Image::getSize(ImageType::getFormatedName('home')),
 				'nb_products' => $nb_products,
-				'category' => new Category(Tools::getValue('id_category_layered', Configuration::get('PS_HOME_CATEGORY')), (int)$cookie->id_lang),
+				'category' => $category,
 				'pages_nb' => (int)$pages_nb,
 				'p' => (int)$p,
 				'n' => (int)$n,
@@ -3074,7 +3080,7 @@ class BlockLayered extends Module
 			$product_list = $this->display(__FILE__, 'blocklayered-no-products.tpl');
 		else
 			$product_list = $smarty->fetch(_PS_THEME_DIR_.'product-list.tpl');
-		
+
 		$vars = array(
 			'filtersBlock' => utf8_encode($this->generateFiltersBlock($selected_filters)),
 			'productList' => utf8_encode($product_list),

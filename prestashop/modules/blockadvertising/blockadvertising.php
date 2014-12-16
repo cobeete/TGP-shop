@@ -91,7 +91,7 @@ class BlockAdvertising extends Module
 		// Hook the module either on the left or right column
 		$theme = new Theme(Context::getContext()->shop->id_theme);
 		if ((!$theme->default_left_column || !$this->registerHook('leftColumn'))
-			&& (!$theme->default_right_column || !$this->registerHook('rightColumn'))
+			&& (!$theme->default_right_column || !$this->registerHook('rightColumn') && $this->registerHook('displayNav'))
 		)
 		{
 			// If there are no colums implemented by the template, throw an error and uninstall the module
@@ -221,6 +221,11 @@ class BlockAdvertising extends Module
 	{
 		return $this->hookRightColumn($params);
 	}
+
+    public function hookDisplayNav($params)
+    {
+        return $this->hookRightColumn($params);
+    }
 
 	public function hookHeader($params)
 	{

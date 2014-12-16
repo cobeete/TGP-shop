@@ -1,0 +1,36 @@
+<?php
+
+global $_MODULE;
+$_MODULE = array();
+$_MODULE['<{trustedshops}prestashop>trustedshops_0aa7ce92297d05fc09fb9fdbe5da6be6'] = 'Ce module requiert l\'extension PHP SOAP pour fonctionner correctement.';
+$_MODULE['<{trustedshops}prestashop>trustedshops_8b61f54775adf535d4da32eb434309ea'] = 'Solutions de confiance Trusted Shops';
+$_MODULE['<{trustedshops}prestashop>trustedshops_2964826bd3300a3bd1cc3b2f0226ef2a'] = 'Donnez confiance en affichant les avis clients sur votre boutique .';
+$_MODULE['<{trustedshops}prestashop>trustedshops_968e0f78caa7d3245c8f6f858de993d8'] = 'Etes-vous sûr de vouloir supprimer votre configuration?';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_2b83e3a2e08203b9892ad8801d6b2543'] = 'Trusted Shops Système dévaluation client';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_b20a16afda98421bbf7457ccfa50e311'] = 'Ce module nécessite les droits de lecture et d\'écriture sur le répertoire cache du module.';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_687d745d0dd48ea996cb951d705da4d0'] = 'Ce module nécessite l\'extension SOAP PHP pour fonctionner correctement';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_1097e2b0ee70e248749f0d0a9292df56'] = 'Trusted Shops ID non valide';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_24bbca53f91f119c930d147557a4e997'] = 'Veuillez vous enregistrer';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_6c92285fa6d3e827b198d120ea3ac674'] = 'ici';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_9ad6278cff9ee53a9970b3a9ecc00a5c'] = 'ou contacter service@trustedshops.com.';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_b4fc8e4eaf37aa936859367ad7c642ca'] = '\'Le système dévaluation Trusted Shops na pas encore été activé pour ce Trusted Shops ID.';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_8db5bd2272b51b3525ad7661c10d8b2b'] = 'Une erreur est survenue';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_c888438d14855d7d96a2724ee9c306bd'] = 'Configuration mise à jour';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_4d3d769b812b6faa6b76e1a8abaece2d'] = 'Actif';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_eeb41070f0552af9f1339ed58da237fb'] = 'Inactif tant que vous n\'avez pas spécifiez votre Trusted Shops ID';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_2a94082b582d0620bae922fc14c36444'] = 'Configuration';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_e66ff458a8281bc8983ef58f991accb0'] = 'Merci de renseigner votre Trusted Shops ID (un ID différent par langue) :';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_9dc0b7bdd32d5e30f4d71eb5abb6b8d4'] = 'Paramètres d\'affichage';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_2c0cb0ee2b08132e1240a3bc097093e8'] = 'Décalage vers le haut (250px max.)';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_c9cc8cce247e49bae79f15173ce97354'] = 'Sauvegarder';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_f5395c9793af8a11b406ca7c1ac70da9'] = 'En savoir plus';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_9a983837b32d42343dc0c62d35b1f955'] = 'Trusted Shops Système dévaluation client';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_5b91fe21d207317c7c9fad225a7ce442'] = 'Pour les acheteurs en ligne, les évaluations positives et vérifiables des clients sont le signe évident quun site marchand est digne de confiance. Le logiciel requis existe déjà dans Prestashop, ce qui fait que quelques clics vous suffisent pour aller chercher également des évaluations de clients sur votre site.';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_1b9370f9382b6734e224e8744ea8a31e'] = 'Aide à lorientation pour vos clients';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_768fb2eb1bc94f8ffc8dee63652e23ad'] = 'Les meilleurs vendeurs, ce sont les clients satisfaits. Faites dire pour vous par vos clients combien les achats sur votre site marchand sont sûrs et confortables.';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_866a520be0de10a4fc8958a9e89126c3'] = 'Base doptimisation du site';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_9c6dfeed0caab43f7ff0f6bbd19b27dd'] = 'Par leurs interventions, vos clients vous aident à optimiser les processus de votre site. Car mieux un site marchand fonctionne, plus vos clients sont satisfaits.';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_0fac19c0cc6e205682dd52d61dd5a0a2'] = 'Diffusion sur Facebook, Twitter et Google';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_afe906fe9448ed1b480b3eec383461de'] = 'Vos clients diffusent avis et évaluations sur Facebook et Twitter directement à leurs amis et connaissances. Les évaluations sont intégrées automatiquement dans le Google-Index et prises en compte dans Google Shopping.';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_2ab78702e34e81e82ca61847300b1618'] = 'Etes-vous satisfait de votre achat chez';
+$_MODULE['<{trustedshops}prestashop>trustedshopsrating_a11109fe93f6dc4637e5b039651a4fdb'] = '? Donnez nous votre avis!';

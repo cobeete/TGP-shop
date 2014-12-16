@@ -1,0 +1,25 @@
+[24-Oct-2014 16:12:50 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 34
+[24-Oct-2014 16:12:50 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 35
+[24-Oct-2014 16:12:50 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 36
+[24-Oct-2014 18:12:50 Europe/Madrid] PHP Notice:  Use of undefined constant _RIJNDAEL_KEY_ - assumed '_RIJNDAEL_KEY_' in /home2/topgourm/public_html/classes/Cookie.php on line 80
+[24-Oct-2014 18:12:50 Europe/Madrid] PHP Notice:  Use of undefined constant _RIJNDAEL_IV_ - assumed '_RIJNDAEL_IV_' in /home2/topgourm/public_html/classes/Cookie.php on line 80
+[27-Oct-2014 17:18:57 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 34
+[27-Oct-2014 17:18:57 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 35
+[27-Oct-2014 17:18:57 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 36
+[27-Oct-2014 18:18:57 Europe/Madrid] PHP Notice:  Use of undefined constant _RIJNDAEL_KEY_ - assumed '_RIJNDAEL_KEY_' in /home2/topgourm/public_html/classes/Cookie.php on line 80
+[27-Oct-2014 18:18:57 Europe/Madrid] PHP Notice:  Use of undefined constant _RIJNDAEL_IV_ - assumed '_RIJNDAEL_IV_' in /home2/topgourm/public_html/classes/Cookie.php on line 80
+[27-Oct-2014 17:20:59 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 34
+[27-Oct-2014 17:20:59 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 35
+[27-Oct-2014 17:20:59 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 36
+[27-Oct-2014 18:20:59 Europe/Madrid] PHP Notice:  Use of undefined constant _RIJNDAEL_KEY_ - assumed '_RIJNDAEL_KEY_' in /home2/topgourm/public_html/classes/Cookie.php on line 80
+[27-Oct-2014 18:20:59 Europe/Madrid] PHP Notice:  Use of undefined constant _RIJNDAEL_IV_ - assumed '_RIJNDAEL_IV_' in /home2/topgourm/public_html/classes/Cookie.php on line 80
+[28-Oct-2014 07:10:26 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 34
+[28-Oct-2014 07:10:26 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 35
+[28-Oct-2014 07:10:26 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 36
+[28-Oct-2014 08:10:26 Europe/Madrid] PHP Notice:  Use of undefined constant _RIJNDAEL_KEY_ - assumed '_RIJNDAEL_KEY_' in /home2/topgourm/public_html/classes/Cookie.php on line 80
+[28-Oct-2014 08:10:26 Europe/Madrid] PHP Notice:  Use of undefined constant _RIJNDAEL_IV_ - assumed '_RIJNDAEL_IV_' in /home2/topgourm/public_html/classes/Cookie.php on line 80
+[28-Oct-2014 07:10:41 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 34
+[28-Oct-2014 07:10:41 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 35
+[28-Oct-2014 07:10:41 UTC] PHP Warning:  ini_set() has been disabled for security reasons in /home2/topgourm/public_html/config/config.inc.php on line 36
+[28-Oct-2014 08:10:41 Europe/Madrid] PHP Notice:  Use of undefined constant _RIJNDAEL_KEY_ - assumed '_RIJNDAEL_KEY_' in /home2/topgourm/public_html/classes/Cookie.php on line 80
+[28-Oct-2014 08:10:41 Europe/Madrid] PHP Notice:  Use of undefined constant _RIJNDAEL_IV_ - assumed '_RIJNDAEL_IV_' in /home2/topgourm/public_html/classes/Cookie.php on line 80
