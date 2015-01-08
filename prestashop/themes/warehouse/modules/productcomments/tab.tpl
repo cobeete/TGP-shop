@@ -23,4 +23,4 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<li><a href="#reviewsTab" data-toggle="tab" id="tab_reviews_link">{l s='Reviews' mod='productcomments'}</a></li>
+<li><a href="#reviewsTab" data-toggle="tab">{l s='Reviews' mod='productcomments'}</a></li>
